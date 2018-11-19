@@ -7,24 +7,13 @@ let fse = require('fs-extra')
 let ora = require('ora')
 let chalk = require('chalk')
 
-require('vue-cli/bin/vue-init')
-let arg = process.argv
-if(arg.length < 4){ process.exit() }
-let timer = setInterval(() => {
-    if( fse.existsSync(arg[3]) ){
-        init()
-        clearInterval(timer)
-    }
-}, 500);
-
+init()
 function init() {
     let userDirDemoTemplate = `${os.tmpdir()}/vue-architecture-demo/`
-    let vueTemplateSrc = `./${arg[3]}/src`
 
     if(fse.existsSync(userDirDemoTemplate)){ fse.removeSync(userDirDemoTemplate) }
 
-    fse.removeSync(vueTemplateSrc)
-    // if(fse.existsSync('./src')){ console.log(chalk.red('src文件已经存在')); process.exit() }
+    if(fse.existsSync('./src')){ console.log(chalk.red('src文件已经存在')); process.exit() }
 
     const spinner = ora(`正在下载项目模板...`)
     spinner.start()
@@ -33,7 +22,7 @@ function init() {
     download('xxssww0258/vue-architecture-demo', userDirDemoTemplate, { clone: false }, function (err) {
         spinner.stop()
         if(err){console.log(err)}
-        fse.copy( `${userDirDemoTemplate}/src`,`./${arg[3]}/src`)
+        fse.copy( `${userDirDemoTemplate}/src`,`./src`)
             .then(()=>{
                 console.log(chalk.green('success'))
             })
