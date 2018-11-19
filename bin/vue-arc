@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+
+let download = require('download-git-repo')
+let os = require('os')
+let fse = require('fs-extra')
+let ora = require('ora')
+let chalk = require('chalk')
+
+let userDirDemoTemplate = `${os.tmpdir()}/vue-architecture-demo/`
+
+if(fse.existsSync(userDirDemoTemplate)){ fse.removeSync(userDirDemoTemplate) }
+if(fse.existsSync('./src')){ console.log(chalk.red('src文件已经存在')); process.exit() }
+
+const spinner = ora(`正在下载项目模板...`)
+spinner.start()
+
+// 下载项目用的
+download('xxssww0258/vue-architecture-demo', userDirDemoTemplate, { clone: false }, function (err) {
+    spinner.stop()
+    if(err){console.log(err)}
+    fse.copy( `${userDirDemoTemplate}/src`,'./src')
+        .then(()=>{
+            console.log(chalk.green('success'))
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+})

@@ -1,0 +1,30 @@
+{
+  "name": "vue-arc-cli",
+  "version": "0.0.1",
+  "description": "vue-architecture-demo的脚手架",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "vue-arc": "bin/vue-arc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxssww0258/vue-architecture-demo-cli.git"
+  },
+  "keywords": [
+    "vue-architecture-demo", "vue"
+  ],
+  "author": "JohnOne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xxssww0258/vue-architecture-demo-cli/issues"
+  },
+  "homepage": "https://github.com/xxssww0258/vue-architecture-demo-cli#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "download-git-repo": "^1.1.0",
+    "fs-extra": "^7.0.1",
+    "ora": "^3.0.0"
+  }
+}
